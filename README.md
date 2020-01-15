@@ -1,34 +1,14 @@
-# hakoiko.portfolio-2020
+# portfolio 2020
 
-## Project setup
-```
-npm install
-```
+http://www.hakoiko.com
 
-### Compiles and hot-reloads for development
+...Vue + Typescript + TSX로 개발중입니다. 🙃
+
+## Local Server
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 참고 저장소
+- [vue-class-component](https://github.com/vuejs/vue-class-component)
+- [vue-property-decorator](https://github.com/kaorun343/vue-property-decorator)

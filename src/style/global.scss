@@ -1,6 +1,6 @@
 :root {
   --cx-manilla: #fff28a;
-  --cx-dark-cream: #ffe29b;
+  --cx-dark-cream: #ffd859;
   --cx-gray-darkest: #333;
   --cx-white: #fff;
   --cx-barbie-pink: #ff3f89;
@@ -16,4 +16,15 @@
   --gap-m: 50px;
   --gap-s: 30px;
   --gap-xs: 10px;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+ul, li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }

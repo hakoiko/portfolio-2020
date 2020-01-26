@@ -8,23 +8,37 @@
     <div class="cover-title">
       <div class="title-bg-blocks">
         <object-matrix
-          :cols="10"
+          :cols="5"
           :col-size="150"
           :rows="8"
           :row-size="80"
-          :presence="0.2"
+          :presence="0.25"
           :fuzzy-x="50"
         >
           <template #default="{ item }">
             <div
               class="block-item"
               :style="{
-                'width': item.getRandomNum(10, 500) + 'px',
-                'animation-duration': item.getRandomNum(5, 15) + 's'
+                'width': randomNum(10, 180) + 'px',
+                'animation-duration': randomNum(1, 8) + 's'
               }"
             />
           </template>
         </object-matrix>
+        <ul class="blocks-static">
+          <li
+            :class="[
+              'static-item',
+              'item-' + index
+            ]"
+            :style="{
+              'margin-left': randomNum(-120, 120) + 'px',
+              'width': item.width ? item.width + 'px' : randomNum(160, 480) + 'px'
+            }"
+            v-for="(item, index) in staticBlocks"
+            :key="index"
+          />
+        </ul>
       </div>
       <div class="title-message-base">
         <pre>
@@ -51,7 +65,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import TheParticles, { IParticle } from './TheParticles.vue'
 import ObjectMatrix, { IRandom } from './ObjectMatrix.vue'
-import { RandomNum } from './utils'
+import { RandomNum, ArrayFrom } from './utils'
 
 @Component({
   components: {
@@ -64,6 +78,10 @@ export default class TheCover extends Vue {
   private useParticles?: Boolean
 
   name: string = 'TheCover'
+
+  randomNum = RandomNum
+
+  arrayFrom = ArrayFrom
 
   titleMessageBase: string = `
 export const Portfolio {
@@ -81,9 +99,16 @@ DESIGN`
   coverName: string = `SUCHAN KIM`
 
   particles: IParticle[] = [
-    { shape: 3, cls: '-tri', scaleMin: 0.5, scaleMax: 1.5, count: 12, animationMin: 15, animationMax: 25 },
-    { shape: 4, cls: '-rect', scaleMin: 0.5, scaleMax: 2, count: 10, animationMin: 15, animationMax: 25 },
-    { shape: 5, cls: '-penta', scaleMin: 0.5, scaleMax: 2, count: 8, animationMin: 15, animationMax: 25 }
+    { shape: 3, cls: '-tri', scaleMin: 0.5, scaleMax: 1.5, count: 15, animationMin: 15, animationMax: 25 },
+    { shape: 4, cls: '-rect', scaleMin: 0.5, scaleMax: 2, count: 7, animationMin: 15, animationMax: 25 },
+    { shape: 5, cls: '-penta', scaleMin: 0.5, scaleMax: 2, count: 12, animationMin: 15, animationMax: 25 }
+  ]
+
+  staticBlocks: any[] = [
+    { width: 482 },
+    { width: 236 },
+    { width: 343 },
+    { width: 548 }
   ]
 }
 
@@ -95,6 +120,23 @@ section.the-cover {
   width: 100vw;
   height: 100vh;
   background-color: var(--cx-manilla);
+  @keyframes block-x-scales {
+    0% {
+      transform: scaleX(0) translateX(-10px);
+      opacity: .1;
+    }
+    20% {
+      transform: scaleX(.7);
+      opacity: .4;
+    }
+    90% {
+      transform: scaleX(1);
+      opacity: .3;
+    }
+    100% {
+      transform: scaleX(0) translateX(10px);
+    }
+  }
   .the-particles {
     position: fixed;
     top: 0;
@@ -125,46 +167,43 @@ section.the-cover {
       font-family: 'Source Code Pro', monospace;
     }
     .title-bg-blocks {
+      z-index: 2;
       display: block;
-      .block-item {
-        @keyframes block-x-scales {
-          0% {
-            transform: scaleX(0) translateX(-10px);
-            opacity: .1;
-          }
-          20% {
-            transform: scaleX(.7);
-            opacity: .4;
-          }
-          90% {
-            transform: scaleX(1);
-            opacity: .3;
-          }
-          100% {
-            transform: scaleX(0) translateX(10px);
-          }
-
-        }
+      position: relative;
+      @mixin block-style () {
         display: block;
         height: var(--line-height);
         background-color: var(--cx-dark-cream);
         opacity: .4;
-        background-blend-mode: multiply;
+      }
+      .block-item {
+        @include block-style;
         animation-name: block-x-scales;
         animation-timing-function: ease;
         animation-iteration-count: infinite;
+      }
+      .blocks-static {
+        position: absolute;
+        top: 160px;
+        left: 320px;
+        @for $n from 1 through 4 {
+          .static-item:nth-of-type(#{$n}) {
+            @include block-style;
+          }
+        }
       }
     }
     .title-message-base {
       font-weight: 300;
       position: relative;
-    }
-    .title-message-main {
-      font-size: 75px;
-      position: absolute;
-      font-weight: 900;
-      top: var(--line-height);
-      left: 390px;
+      z-index: 5;
+      .title-message-main {
+        font-size: 75px;
+        position: absolute;
+        font-weight: 900;
+        top: var(--line-height);
+        left: 390px;
+      }
     }
   }
 }

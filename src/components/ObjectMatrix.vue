@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { GetTransformStyle, RandomNum } from './utils'
+import { GetTransformStyle } from './utils'
 import _ from 'lodash'
 
 export interface IRandom {
@@ -71,8 +71,7 @@ export default class ObjectMatrix extends Vue {
           transform: GetTransformStyle({
             translateX: this.fuzziness(this.fuzzyX),
             translateY: this.fuzziness(this.fuzzyY)
-          }),
-          getRandomNum: RandomNum
+          })
         })
       }
     }

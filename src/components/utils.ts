@@ -48,3 +48,16 @@ export function GetTransformStyle (
     transform: styleArr.join(' ')
   }
 }
+
+/**
+ * 지정한 val을 가진 Array를 리턴합니다.
+ * @function
+ * @param {number} length Array의 길이
+ * @param {*} val 지정할 value
+ */
+export function ArrayFrom (
+  length: number = 1,
+  val: any = null
+): any[] {
+  return Array.from(Array(length)).map(item => val)
+}

@@ -8,9 +8,9 @@
     <div class="cover-title">
       <div class="title-bg-blocks">
         <object-matrix
-          :cols="5"
-          :col-size="150"
-          :rows="8"
+          :cols="6"
+          :col-size="160"
+          :rows="7"
           :row-size="80"
           :presence="0.25"
           :fuzzy-x="50"
@@ -55,8 +55,9 @@
     </div>
     <!-- /.cover-title -->
     <div class="cover-name">
-      {{ coverName }}
+      <span class="name">{{ coverName }}</span>
     </div>
+    <!-- /.cover-name -->
   </section>
   <!-- /.the-cover -->
 </template>
@@ -131,7 +132,7 @@ section.the-cover {
     }
     90% {
       transform: scaleX(1);
-      opacity: .3;
+      opacity: .5;
     }
     100% {
       transform: scaleX(0) translateX(10px);
@@ -156,6 +157,7 @@ section.the-cover {
   }
   .cover-title {
     --line-height: 80px;
+    top: 100px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -203,6 +205,24 @@ section.the-cover {
         font-weight: 900;
         top: var(--line-height);
         left: 390px;
+      }
+    }
+  }
+  .cover-name {
+    margin-top: 150px;
+    .name {
+      font-family: 'Raleway';
+      font-weight: 900;
+      font-size: 30px;
+      display: flex;
+      vertical-align: middle;
+      justify-content: center;
+      &:before {
+        display: block;
+        width: 50vw;
+        margin-right: 20px;
+        content: '';
+        border-bottom: 1px solid var(--c-text);
       }
     }
   }

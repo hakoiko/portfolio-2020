@@ -47,7 +47,20 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { CreateElement, VNode } from 'vue'
+import { GetTransformStyle } from './utils'
 
+/**
+ * 각 파티클 쉐입의 상태를 설정하는 속성입니다.
+ *
+ * @export
+ * @interface IParticleShape
+ * @property {Number} shape 파티클의 모서리의 수 (3각형 - 6각형)
+ * @property {String} cls 파티클에 할당할 css class
+ * @property {top: string, left: string} position 파티클의 위치를 할당할 css position
+ * @property {Number} scale 파티클의 사이즈 스케일. 1 = 100%
+ * @property {Number} parallaxScale 패럴랙스 스크롤 적용시에 아이템의 이동 스케일
+ * @property {Number} animationDuration 애니메이션 적용시 지속시간
+ */
 export interface IParticleShape {
   shape: number,
   cls?: string,
@@ -60,26 +73,38 @@ export interface IParticleShape {
 
 @Component
 export default class ParticleShape extends Vue {
-  @Prop({
-    default: () => {
-      return {
-        shape: 3, cls: '-tri', styl: {}, scale: 1, parallaxScale: 0
-      }
+  /**
+   * 파티클 쉐입 속성인 IParticleShape을 받습니다.
+   */
+  @Prop({ default () {
+    return {
+      shape: 3, cls: '-tri', styl: {}, scale: 1, parallaxScale: 0
     }
-  }) readonly shape!: IParticleShape
+  } })
+  readonly shape!: IParticleShape
 
-  @Prop({
-    default: 0
-  }) parallaxBase!: number
+  /**
+   * Parallax 스크롤 적용시 부모 컴포넌트등으로부터 스크롤 컨테이너의 scrollY 값 등을 받습니다.
+   */
+  @Prop({ default: 0 })
+  parallaxBase!: number
 
+  /**
+   * 파티클 조각의 transform 스타일을 설정합니다.
+   * @return {Object} CSS Transform 스타일을 리턴합니다.
+   */
   get sliceTransform (): { [key: string]: string } {
     // this.parallaxBase * this.
     let transform = {
       'rotate': this.shape.rotate
     }
-    return this.getTransformStyle(transform)
+    return GetTransformStyle(transform)
   }
 
+  /**
+   * 파티클 조각의 컨테이너인 div의 transform 스타일을 설정합니다.
+   * @return {Object} CSS Transform 스타일을 리턴합니다.
+   */
   get shapeTransform (): { [key: string]: string } {
     let scaleStyle = {
       scale: this.shape.scale
@@ -91,16 +116,29 @@ export default class ParticleShape extends Vue {
         translateZ: 0
       }
     }
-    return this.getTransformStyle({ ...scaleStyle, ...parallaxStyle })
+    return GetTransformStyle({ ...scaleStyle, ...parallaxStyle })
   }
 
+  /**
+   * 파티클 아이템에 애니메이션을 사용할 떄, 에니메이션의 속성을 설정합니다.
+   * @return {Object} CSS Transform 스타일을 리턴합니다.
+   */
   get animation (): { [key: string]: string } {
     return {
-      'animation-duration': this.shape.animationDuration + 's'
+      'animation-duration': this.shape.animationDuration + 's',
+      'animation-direction': Math.round(Math.random()) ? 'normal' : 'reverse'
     }
   }
 
-  getTransformStyle (
+  /**
+   * transform에 대해서만 merging 해 Object 형태로 반환하는 역할을 합니다.
+   * CSS Transform은 하나의 속성에 여라기지 transofrm function이 할당됩니다.
+   * 브라우저에서는 css transform 속성을 merging 하지 않습니다. 그래서 이런 절차가 필요합니다.
+   *
+   * @param {Object} transform { rotate: 30, translateX: -10 } 등의 transform object를 받습니다.
+   * @return {Object} { transform: rotate(30deg) translateX(-10px) }의 형태로 반환합니다.
+   */
+  /* getTransformStyle (
     transform:{ [key: string]: any } = {}
   ): { [key: string]: string } {
     let styleArr: string[] = []
@@ -110,7 +148,7 @@ export default class ParticleShape extends Vue {
       'translateY': 'px'
     }
     for (let [key, val] of Object.entries(transform)) {
-      if (units[key] && val > 0) {
+      if (units[key] && val !== 0) {
         val = val + units[key]
       }
       styleArr.push(`${key}(${val})`)
@@ -119,7 +157,7 @@ export default class ParticleShape extends Vue {
     return {
       transform: styleArr.join(' ')
     }
-  }
+  } */
 }
 </script>
 

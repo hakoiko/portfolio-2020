@@ -6,6 +6,7 @@
   --cx-barbie-pink: #ff3f89;
   --cx-light-skyblue: #cbfaff;
   --cx-mango: #ffa728;
+  --cx-miip-slate: #43475c;
 
   --c-text: var(--cx-gray-darkest);
   --c-bg: var(--cx-white);
@@ -16,9 +17,20 @@
   --gap-m: 50px;
   --gap-s: 30px;
   --gap-xs: 10px;
+
+  --page-item {
+    padding: 100px;
+  }
 }
 
 html, body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Noto Sans Korean', 'SF Pro KR', 'SF Pro Display', 'SF Pro Icons', 'Apple Gothic', 'HY Gulim', 'MalgunGothic', 'HY Dotum', 'Lexi Gulim', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  color: var(--c-text);
+}
+
+h1, h2, h3, h4, h5 {
   padding: 0;
   margin: 0;
 }
@@ -29,14 +41,15 @@ ul, li {
   list-style: none;
 }
 
+.the-page {
+  padding: 100px;
+}
+
 .page-title {
-  font-family: 'Raleway';
-  font-weight: 900;
-  font-size: 26px;
+  font: 900 26px 'Raleway';
+  margin-bottom: 50px;
 }
 
 .project-title {
-  font-family: 'Raleway';
-  font-weight: 900;
-  font-size: 40px;
+  font: 900 40px 'Raleway';
 }

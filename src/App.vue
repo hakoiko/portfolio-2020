@@ -7,17 +7,20 @@
       {{ name }}
     </h1>
     <the-cover />
+    <what-i-did />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import TheCover from './views/TheCover.vue'
+import WhatIDid from './views/WhatIDid.vue'
 import 'normalize.css'
 
 @Component({
   components: {
-    'the-cover': TheCover
+    'the-cover': TheCover,
+    'what-i-did': WhatIDid
   }
 })
 export default class App extends Vue {
@@ -31,8 +34,8 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-@import './style/global.scss';
 @import './style/fonts.scss';
+@import './style/global.scss';
 
 .app-title {
   display: none;

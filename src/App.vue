@@ -8,6 +8,8 @@
     </h1>
     <the-cover />
     <what-i-did />
+    <other-projects />
+    <the-footer />
   </div>
 </template>
 
@@ -16,11 +18,15 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import TheCover from './views/TheCover.vue'
 import WhatIDid from './views/WhatIDid.vue'
 import 'normalize.css'
+import OtherProjects from './views/OtherProjects.vue'
+import TheFooter from './views/TheFooter.vue'
 
 @Component({
   components: {
     'the-cover': TheCover,
-    'what-i-did': WhatIDid
+    'what-i-did': WhatIDid,
+    'other-projects': OtherProjects,
+    'the-footer': TheFooter
   }
 })
 export default class App extends Vue {

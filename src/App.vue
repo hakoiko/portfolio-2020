@@ -1,12 +1,18 @@
 <template>
   <div id="app">
+    <h1
+      class="app-title"
+      aria-role="hidden"
+    >
+      {{ name }}
+    </h1>
     <the-cover />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import TheCover from './components/TheCover.vue'
+import TheCover from './views/TheCover.vue'
 import 'normalize.css'
 
 @Component({
@@ -15,7 +21,11 @@ import 'normalize.css'
   }
 })
 export default class App extends Vue {
-  name: string = 'App1'
+  name: string = 'Development for Better Design'
+
+  created () {
+    document.title = this.name
+  }
 }
 
 </script>
@@ -23,4 +33,8 @@ export default class App extends Vue {
 <style lang="scss">
 @import './style/global.scss';
 @import './style/fonts.scss';
+
+.app-title {
+  display: none;
+}
 </style>

@@ -12,14 +12,14 @@
           :col-size="160"
           :rows="7"
           :row-size="80"
-          :presence="0.25"
+          :presence="0.2"
           :fuzzy-x="50"
         >
           <template #default="{ item }">
             <div
               class="block-item"
               :style="{
-                'width': randomNum(10, 180) + 'px',
+                'width': randomNum(10, 80) + 'px',
                 'animation-duration': randomNum(1, 8) + 's'
               }"
             />
@@ -64,9 +64,9 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import TheParticles, { IParticle } from './TheParticles.vue'
-import ObjectMatrix, { IRandom } from './ObjectMatrix.vue'
-import { RandomNum, ArrayFrom } from './utils'
+import TheParticles, { IParticle } from '../components/TheParticles.vue'
+import ObjectMatrix, { IRandom } from '../components/ObjectMatrix.vue'
+import { RandomNum, ArrayFrom } from '../components/utils'
 
 @Component({
   components: {
@@ -83,6 +83,8 @@ export default class TheCover extends Vue {
   randomNum = RandomNum
 
   arrayFrom = ArrayFrom
+
+  pageTitle = 'What I Do'
 
   titleMessageBase: string = `
 export const Portfolio {
@@ -117,14 +119,14 @@ DESIGN`
 
 <style lang="scss">
 section.the-cover {
-  padding-bottom: 500px;
   width: 100vw;
   height: 100vh;
   background-color: var(--cx-manilla);
+  position: relative;
   @keyframes block-x-scales {
     0% {
       transform: scaleX(0) translateX(-10px);
-      opacity: .1;
+      opacity: 0;
     }
     20% {
       transform: scaleX(.7);
@@ -139,11 +141,11 @@ section.the-cover {
     }
   }
   .the-particles {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     z-index: 0;
     .-tri {
       fill: var(--cx-barbie-pink);

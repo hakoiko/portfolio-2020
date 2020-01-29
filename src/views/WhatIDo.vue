@@ -75,6 +75,9 @@ export default class WhatIDo extends Vue {
 
 <style lang="scss">
 section.what-i-do {
+  --section-title-size: 40px;
+  --section-desc-font: 300 20px /36px 'Noto Sans Korean';
+
   position: relative;
   .page-body {
     display: flex;
@@ -84,15 +87,27 @@ section.what-i-do {
       padding: 0 25px;
       .section-title {
         font-family: 'Raleway';
-        font-size: 40px;
+        font-size: var(--section-title-size);
         font-weight: 900;
       }
       .section-desc {
-        font: 300 20px /36px 'Noto Sans Korean';
+        font: var(--section-desc-font);
         margin-top: 10px;
       }
       .spec-items {
         margin-top: 50px;
+      }
+    }
+  }
+  @media screen and (max-width: 960px) {
+    --section-title-size: 40px;
+    --section-desc-font: 300 15px /30px 'Noto Sans Korean';
+
+    .page-body {
+      flex-direction: column;
+      .body-section {
+        flex-basis: 100%;
+        margin-bottom: 150px;
       }
     }
   }

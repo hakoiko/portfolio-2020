@@ -80,6 +80,8 @@ export default class ProjectItem extends Vue {
 
 <style lang="scss">
 section.project-item {
+  --page-desc-padding: 100px;
+
   display: flex;
   &.-on-air {
     .page-section.-image .section-image {
@@ -91,7 +93,7 @@ section.project-item {
     box-sizing: border-box;
     position: relative;
     &.-desc {
-      padding: 100px;
+      padding: var(--page-desc-padding);
     }
     &.-image {
       overflow: hidden;
@@ -127,6 +129,10 @@ section.project-item {
         margin-top: 10px;
       }
     }
+  }
+  @media screen and (max-width: 960px) {
+    --page-desc-padding: 50px;
+    flex-direction: column;
   }
 }
 </style>

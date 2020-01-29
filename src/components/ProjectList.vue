@@ -71,5 +71,14 @@ section.project-list {
       }
     }
   }
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+    .list-title {
+      position: relative;
+      flex-basis: auto;
+      top: unset;
+      margin-bottom: 50px;
+    }
+  }
 }
 </style>

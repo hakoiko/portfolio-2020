@@ -13,9 +13,9 @@
         <div class="title-bg-blocks">
           <object-matrix
             :cols="6"
-            :col-size="160"
-            :rows="7"
-            :row-size="80"
+            :col-size="matrixBlocks.colSize"
+            :rows="matrixBlocks.rows"
+            :row-size="matrixBlocks.rowSize"
             :presence="0.2"
             :fuzzy-x="50"
           >
@@ -36,7 +36,7 @@
                 'item-' + index
               ]"
               :style="{
-                'margin-left': randomNum(-120, 120) + 'px',
+                'transform': `translateX(${randomNum(staticBlocksMargin.min, staticBlocksMargin.max)}px)`,
                 'width': item.width ? item.width + 'px' : randomNum(160, 480) + 'px'
               }"
               v-for="(item, index) in staticBlocks"
@@ -131,18 +131,62 @@ DESIGN`
 
   scrolled: boolean = window.scrollY > window.innerHeight / 2
 
-  staticBlocks: any[] = [
-    { width: 482 },
-    { width: 236 },
-    { width: 343 },
-    { width: 548 }
-  ]
+  get isMobile () {
+    return this.$store.state.isMobile
+  }
+
+  get staticBlocks (): object[] {
+    if (this.isMobile) {
+      return [
+        { width: 240 },
+        { width: 82 },
+        { width: 152 },
+        { width: 245 }
+      ]
+    } else {
+      return [
+        { width: 482 },
+        { width: 236 },
+        { width: 343 },
+        { width: 548 }
+      ]
+    }
+  }
+
+  get staticBlocksMargin (): { [k: string]: number } {
+    return (this.isMobile) ? { min: -40, max: 40 } : { min: -120, max: 120
+    }
+  }
+
+  get matrixBlocks (): { [k: string]: number } {
+    if (this.isMobile) {
+      return {
+        colSize: 65,
+        rowSize: 30,
+        rows: 9
+      }
+    } else {
+      return {
+        colSize: 160,
+        rowSize: 80,
+        rows: 7
+      }
+    }
+  }
 }
 
 </script>
 
 <style lang="scss">
 section.the-cover {
+  --title-line-height: 80px;
+  --title-font-size: 65px;
+  --title-font-size-l: 75px;
+  --title-message-left: 390px;
+  --blocks-static-top: 160px;
+  --blocks-static-left: 320px;
+  --cover-name-size: 30px;
+
   width: 100vw;
   min-height: 100vh;
   background-color: var(--cx-manilla);
@@ -188,13 +232,12 @@ section.the-cover {
   .cover-content {
     min-height: 100vh;
     .content-title {
-      --line-height: 80px;
       top: 100px;
       position: relative;
       display: flex;
       justify-content: center;
-      font-size: 65px;
-      line-height: var(--line-height);
+      font-size: var(--title-font-size);
+      line-height: var(--title-line-height);
       color: var(--cx-white);
       pre {
         margin: 0;
@@ -203,10 +246,18 @@ section.the-cover {
       .title-bg-blocks {
         z-index: 2;
         display: block;
-        position: relative;
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        height: 100%;
+        .object-matrix {
+          width: 100%;
+          overflow: hidden;
+          height: 100%;
+        }
         @mixin block-style () {
           display: block;
-          height: var(--line-height);
+          height: var(--title-line-height);
           background-color: var(--cx-dark-cream);
           opacity: .4;
         }
@@ -218,10 +269,11 @@ section.the-cover {
         }
         .blocks-static {
           position: absolute;
-          top: 160px;
-          left: 320px;
+          top: var(--blocks-static-top);
+          width: 100%;
           @for $n from 1 through 4 {
             .static-item:nth-of-type(#{$n}) {
+              margin: auto;
               @include block-style;
             }
           }
@@ -232,11 +284,11 @@ section.the-cover {
         position: relative;
         z-index: 5;
         .title-message-main {
-          font-size: 75px;
+          font-size: var(--title-font-size-l);
           position: absolute;
           font-weight: 900;
-          top: var(--line-height);
-          left: 390px;
+          top: var(--title-line-height);
+          left: var(--title-message-left);
         }
       }
     }
@@ -245,18 +297,37 @@ section.the-cover {
       .name {
         font-family: 'Raleway';
         font-weight: 900;
-        font-size: 30px;
+        font-size: var(--cover-name-size);
         display: flex;
         vertical-align: middle;
         justify-content: center;
+        width: 80vw;
+        margin-left: 10vw;
         &:before {
+          flex: 1 1 auto;
           display: block;
-          width: 50vw;
           margin-right: 20px;
           content: '';
           border-bottom: 1px solid var(--c-text);
         }
       }
+    }
+  }
+  @media screen and (max-width: 960px) {
+    --title-line-height: 30px;
+    --title-font-size: 21px;
+    --title-font-size-l: 25px;
+    --title-message-left: 124px;
+    --blocks-static-top: 60px;
+    --blocks-static-left: 95px;
+    --cover-name-size: 20px;
+
+    .content-title {
+      padding-bottom: 90px;
+    }
+    .content-name {
+      position: absolute;
+      top: 50vh;
     }
   }
 }

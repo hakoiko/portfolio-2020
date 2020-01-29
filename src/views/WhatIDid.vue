@@ -121,6 +121,18 @@ section.what-i-did {
           background-repeat: no-repeat;
         }
       }
+      @media screen and (max-width: 960px) {
+        .chart-container {
+          height: 40px;
+          margin-bottom: 30px;
+          .item {
+            width: calc(100vw - 100px);
+          }
+        }
+        .page-section.-image {
+          display: none;
+        }
+      }
     }
     &.-leavon {
       .section-image {

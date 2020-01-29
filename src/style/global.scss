@@ -21,6 +21,8 @@
   --page-item {
     padding: 100px;
   }
+
+  --bp-mobile: 960px;
 }
 
 html, body {
@@ -52,4 +54,17 @@ ul, li {
 
 .project-title {
   font: 900 40px 'Raleway';
+}
+
+@media screen and (max-width: 960px) {
+  #app {
+    width: 100vw;
+  }
+
+  .the-page {
+    padding: 50px;
+  }
+  .project-title {
+    font-size: 30px;
+  }
 }

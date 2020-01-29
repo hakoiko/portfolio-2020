@@ -1,5 +1,10 @@
 <template>
-  <div id="app">
+  <div
+    id="app"
+    :class="{
+      '-is-mobile': isMobile
+    }"
+  >
     <h1
       class="app-title"
       aria-role="hidden"
@@ -32,8 +37,25 @@ import TheFooter from './views/TheFooter.vue'
 export default class App extends Vue {
   name: string = 'Development for Better Design'
 
+  get isMobile () {
+    return this.$store.state.isMobile
+  }
+
   created () {
     document.title = this.name
+  }
+
+  mounted () {
+    this.$store.dispatch('get-is-mobile')
+    window.addEventListener('resize', this.handleWindowSize)
+  }
+
+  /**
+   * @function
+   * WindowResize시 innerWidth를 체크합니다.
+   */
+  handleWindowSize (e: Event):void {
+    this.$store.dispatch('get-is-mobile')
   }
 }
 

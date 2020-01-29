@@ -8,7 +8,7 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "deploy": "vue-cli-service build&&cd dist&&git add -A&&git commit -m 'deploy'&&git push -f git@github.com:hakoiko/portfolio-2020.git master:gh-pages"
+    "deploy": "vue-cli-service build&&cp -i src/assets/images/social-preview.png dist/&&cd dist&&git init&&git add -A&&git commit -m 'deploy'&&git push -f git@github.com:hakoiko/portfolio-2020.git master:gh-pages"
   },
   "dependencies": {
     "@types/lodash": "^4.14.149",

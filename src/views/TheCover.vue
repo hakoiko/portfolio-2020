@@ -161,13 +161,13 @@ DESIGN`
   get matrixBlocks (): { [k: string]: number } {
     if (this.isMobile) {
       return {
-        colSize: 65,
+        colSize: 15,
         rowSize: 30,
         rows: 9
       }
     } else {
       return {
-        colSize: 160,
+        colSize: 15,
         rowSize: 80,
         rows: 7
       }
@@ -251,9 +251,10 @@ section.the-cover {
         width: 100vw;
         height: 100%;
         .object-matrix {
-          width: 100%;
-          overflow: hidden;
+          width: 80vw;
           height: 100%;
+          margin-left: 10vw;
+          overflow: hidden;
         }
         @mixin block-style () {
           display: block;

@@ -1,5 +1,7 @@
 <template>
-  <section class="object-matrix">
+  <section
+    class="object-matrix"
+  >
     <div
       class="matrix-item"
       v-for="item in matrixItems"
@@ -66,7 +68,7 @@ export default class ObjectMatrix extends Vue {
         items.push({
           position: {
             top: row * this.rowSize + 'px',
-            left: col * this.colSize + 'px'
+            left: col * this.colSize + '%'
           },
           transform: GetTransformStyle({
             translateX: this.fuzziness(this.fuzzyX),

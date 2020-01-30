@@ -102,6 +102,7 @@ section.what-i-did {
     }
     &.-miip {
       background-color: var(--cx-miip-slate);
+      overflow: hidden;
       color: var(--cx-white);
       .divider {
         background-color: var(--cx-white);

@@ -230,9 +230,15 @@ section.the-cover {
     }
   }
   .cover-content {
-    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
     .content-title {
-      top: 100px;
+      width: 80vw;
+      margin: auto;
+      height: calc(var(--title-line-height) * 8);
       position: relative;
       display: flex;
       justify-content: center;
@@ -294,7 +300,10 @@ section.the-cover {
       }
     }
     .content-name {
-      margin-top: 150px;
+      position: absolute;
+      bottom: 150px;
+      left: 10vw;
+      width: 80vw;
       .name {
         font-family: 'Raleway';
         font-weight: 900;
@@ -302,8 +311,6 @@ section.the-cover {
         display: flex;
         vertical-align: middle;
         justify-content: center;
-        width: 80vw;
-        margin-left: 10vw;
         &:before {
           flex: 1 1 auto;
           display: block;
@@ -323,12 +330,15 @@ section.the-cover {
     --blocks-static-left: 95px;
     --cover-name-size: 20px;
 
-    .content-title {
-      padding-bottom: 90px;
-    }
-    .content-name {
-      position: absolute;
-      top: 50vh;
+    .cover-content {
+      height: 80vh;
+      .content-title {
+        padding-bottom: 90px;
+      }
+      .content-name {
+        position: absolute;
+        top: 70vh;
+      }
     }
   }
 }

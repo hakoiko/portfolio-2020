@@ -42,5 +42,13 @@ section.spec-items {
       margin-right: 30px;
     }
   }
+  @media screen and (max-width: 960px) {
+    .spec-title {
+      font-size: 22px;
+    }
+    .spec-list {
+      font: 300 15px /30px 'Noto Sans Korean';
+    }
+  }
 }
 </style>

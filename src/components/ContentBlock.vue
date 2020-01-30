@@ -60,5 +60,13 @@ section.content-block {
       }
     }
   }
+  @media screen and (max-width: 960px) {
+    .block-title {
+      font-size: 22px;
+    }
+    .block-desc {
+      font-size: 15px;
+    }
+  }
 }
 </style>

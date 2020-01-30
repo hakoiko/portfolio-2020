@@ -52,10 +52,6 @@ ul, li {
   margin-bottom: 50px;
 }
 
-.project-title {
-  font: 900 40px 'Raleway';
-}
-
 @media screen and (max-width: 960px) {
   #app {
     width: 100vw;
@@ -63,8 +59,5 @@ ul, li {
 
   .the-page {
     padding: 50px;
-  }
-  .project-title {
-    font-size: 30px;
   }
 }

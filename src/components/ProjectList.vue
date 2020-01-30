@@ -77,7 +77,20 @@ section.project-list {
       position: relative;
       flex-basis: auto;
       top: unset;
-      margin-bottom: 50px;
+      margin-bottom: 30px;
+      font-size: 40px;
+    }
+    .the-list .list-item {
+      padding-right: 0;
+      .item-title {
+        font: 900 24px /30px 'Raleway';
+      }
+      .item-client {
+        font: 300 24px /30px 'Noto Sans Korean';
+      }
+      .item-desc {
+        font-size: 15px;
+      }
     }
   }
 }

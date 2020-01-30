@@ -81,6 +81,8 @@ export default class ProjectItem extends Vue {
 <style lang="scss">
 section.project-item {
   --page-desc-padding: 100px;
+  --title-font: 900 40px 'Raleway';
+  --client-font: 900 30px /35px 'Raleway';
 
   display: flex;
   &.-on-air {
@@ -113,6 +115,7 @@ section.project-item {
       .title {
         white-space: pre-line;
         text-transform: uppercase;
+        font: var(--title-font);
       }
       .divider {
         width: 75px;
@@ -122,7 +125,7 @@ section.project-item {
         margin: 30px 0;
       }
       .client {
-        font: 900 30px /35px 'Raleway';
+        font: var(--client-font);
       }
       .duration {
         font: 900 20px /24px 'Roboto';
@@ -132,7 +135,10 @@ section.project-item {
   }
   @media screen and (max-width: 960px) {
     --page-desc-padding: 50px;
+    --title-font: 900 30px 'Raleway';
+    --client-font: 900 25px /30px 'Raleway';
     flex-direction: column;
+
   }
 }
 </style>

@@ -100,7 +100,7 @@ section.what-i-do {
     }
   }
   @media screen and (max-width: 960px) {
-    --section-title-size: 40px;
+    --section-title-size: 30px;
     --section-desc-font: 300 15px /30px 'Noto Sans Korean';
 
     .page-body {

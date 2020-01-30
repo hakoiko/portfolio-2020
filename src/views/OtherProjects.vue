@@ -3,12 +3,14 @@
     <h2 class="page-title">
       OTHER PROJECTS
     </h2>
-    <project-list
-      v-for="(list, year) in projects"
-      :key="year"
-      :title="year"
-      :items="list"
-    />
+    <div class="project-lists">
+      <project-list
+        v-for="(list, year) in projects"
+        :key="year"
+        :title="year"
+        :items="list"
+      />
+    </div>
   </section>
 </template>
 
@@ -127,7 +129,12 @@ node.js를 이용한 서버 개발과 프론트엔드 SDK 개발`
 <style lang="scss">
 section.other-projects {
   position: relative;
+  .project-lists {
+    display: flex;
+    flex-direction: column-reverse;
+  }
   .project-list {
+    flex: 1 1 auto;
     margin-bottom: 100px;
   }
 }

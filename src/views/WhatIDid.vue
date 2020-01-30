@@ -112,6 +112,7 @@ section.what-i-did {
         position: relative;
         .item {
           position: absolute;
+          z-index: 0;
           bottom: 0;
           background-image: url('../assets/images/miip.svg');
           background-size: contain;
@@ -123,8 +124,8 @@ section.what-i-did {
       }
       @media screen and (max-width: 960px) {
         .chart-container {
-          height: 40px;
-          margin-bottom: 30px;
+          height: 150px;
+          margin-bottom: 20px;
           .item {
             width: calc(100vw - 100px);
           }

@@ -39,12 +39,14 @@ export default class ProjectList extends Vue {
 <style lang="scss">
 section.project-list {
   display: flex;
+  position: relative;
   .list-title {
     font: 300 50px /56px 'Roboto';
     height: 56px;
     flex: 1 1 25%;
     position: sticky;
     top: 50px;
+    margin-bottom: 100px;
   }
   .the-list {
     flex: 3 3 75%;

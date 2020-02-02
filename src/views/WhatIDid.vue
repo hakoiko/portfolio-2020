@@ -60,7 +60,7 @@
       />
       <content-block
         title="Tech"
-        :content="['Vue.js', 'VueX', 'SCSS', 'RS-CSS', 'Canvas', 'Fabric.js', 'Android WebView', 'Google Places API', 'Firebase']"
+        :content="['Vue.js', 'VueX', 'SCSS', 'RS-CSS', 'Canvas', 'Pixi.js', 'Android WebView', 'Google Places API', 'Firebase']"
       />
       <content-block
         title="Description"

@@ -113,7 +113,8 @@ export const Portfolio {
   title: '
 
 
-                 '`
+                 '
+}`
 
   titleMessageMain: string = `
 DEVELOPMENT
